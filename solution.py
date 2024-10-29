@@ -374,8 +374,6 @@ Indice : Pour résoudre cette question, vous n'avez besoin que d'un vecteur de f
 
 # J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
 
-import collections
-
 class AdjacentCharactersProblem:
     def __init__(self):
         pass
@@ -385,9 +383,21 @@ class AdjacentCharactersProblem:
         :type word: str
         :rtype: bool
         """
-        counts = list(collections.Counter(word).values())
-        max_count = max(counts)
-        return max_count <= (len(word) + 1) // 2
+        # Compter les occurrences de chaque caractère
+        counts = {}
+        for char in word:
+            if char in counts:
+                counts[char] += 1
+            else:
+                counts[char] = 1
+
+        # Trouver la fréquence maximale et la longueur du mot
+        max_count = max(counts.values())
+        word_length = len(word)
+
+        # Vérifie si le caractère le plus fréquent peut être réorganisé sans être adjacent
+        return max_count <= (word_length + 1) // 2
+
 
 
 """## Question 4: Length of the longest subarray of an array (3 points)
