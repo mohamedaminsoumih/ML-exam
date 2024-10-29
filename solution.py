@@ -447,15 +447,11 @@ class LengthLongestSubarray:
         pass
 
     def longest_subarray(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
         counts = Counter(nums)
         max_length = 0
 
+        # Calcule la somme des fréquences pour chaque paire de valeurs adjacentes
         for num in counts:
-            # Somme des occurrences de num et de num + 1
             max_length = max(max_length, counts[num] + counts.get(num + 1, 0))
 
         return max_length
@@ -548,7 +544,7 @@ Explication : Le chemin avec la somme maximale est 1 -> 3 -> 4 -> 3 -> 1, avec u
 Pour une grille avec $n$ lignes et $m$ colonnes, vous pouvez énumérer tous les chemins qui commencent à la position de la grille $(0,0)$ et se terminent à $(m,n)$. Vous pouvez énumérer les chemins avec des algorithmes comme la recherche en profondeur. Vous pouvez également remarquer les sous-problèmes récurrents et utiliser la programmation dynamique.
 """
 
-# J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question, avec quelques modifications que j'ai faites moi-même.
 
 class MaximumSumPath:
     def __init__(self):
