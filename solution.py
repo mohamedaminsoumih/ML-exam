@@ -450,21 +450,28 @@ Explication : Le plus long sous-tableau est [4, 3, 3] avec une longueur de 3.
 """
 # J'ai utilisé ChatGPT pour m'aider à répondre à cette question, avec quelques modifications que j'ai faites moi-même.
 
-from collections import Counter
-
 class LengthLongestSubarray:
     def __init__(self):
         pass
 
     def longest_subarray(self, nums):
-        counts = Counter(nums)
+        # Compter les occurrences de chaque nombre
+        counts = {}
+        for num in nums:
+            if num in counts:
+                counts[num] += 1
+            else:
+                counts[num] = 1
+
         max_length = 0
 
-        # Calcule la somme des fréquences pour chaque paire de valeurs adjacentes
+        # Calculer la longueur maximale en vérifiant chaque nombre et son voisin
         for num in counts:
-            max_length = max(max_length, counts[num] + counts.get(num + 1, 0))
+            adjacent_count = counts[num] + counts.get(num + 1, 0)
+            max_length = max(max_length, adjacent_count)
 
         return max_length
+
 
 
 
