@@ -112,7 +112,6 @@ class SVM_PolynomialKernel:
     @staticmethod
     def polynomial_kernel(x, y, kernel_scale=1, c=0, d=2):
         """
-        Calcule la valeur du noyau polynomial entre deux vecteurs x et y sans utiliser zip.
         
         :param x: List[float]
         :param y: List[float]
