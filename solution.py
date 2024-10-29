@@ -448,7 +448,7 @@ Sortie :
 
 Explication : Le plus long sous-tableau est [4, 3, 3] avec une longueur de 3.
 """
-# J'ai utilisé ChatGPT pour m'aider à répondre à cette question, avec quelques modifications que j'ai faites moi-même.
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question, avec des majeures modifications que j'ai faites moi-même.
 
 class LengthLongestSubarray:
     def __init__(self):
@@ -561,7 +561,7 @@ Explication : Le chemin avec la somme maximale est 1 -> 3 -> 4 -> 3 -> 1, avec u
 Pour une grille avec $n$ lignes et $m$ colonnes, vous pouvez énumérer tous les chemins qui commencent à la position de la grille $(0,0)$ et se terminent à $(m,n)$. Vous pouvez énumérer les chemins avec des algorithmes comme la recherche en profondeur. Vous pouvez également remarquer les sous-problèmes récurrents et utiliser la programmation dynamique.
 """
 
-# J'ai utilisé ChatGPT pour m'aider à répondre à cette question, avec quelques modifications que j'ai faites moi-même.
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question, avec des majeures modifications que j'ai faites moi-même.
 
 class MaximumSumPath:
     def __init__(self):
