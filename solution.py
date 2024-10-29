@@ -104,7 +104,6 @@ Vous devrez :
 
 ## Partie 1 : Implémenter le noyau polynomial (3 points)
 """
- # J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
 
 class SVM_PolynomialKernel:
     def __init__(self):
@@ -113,7 +112,7 @@ class SVM_PolynomialKernel:
     @staticmethod
     def polynomial_kernel(x, y, kernel_scale=1, c=0, d=2):
         """
-        Calcule la valeur du noyau polynomial entre deux vecteurs x et y.
+        Calcule la valeur du noyau polynomial entre deux vecteurs x et y sans utiliser zip.
         
         :param x: List[float]
         :param y: List[float]
@@ -122,8 +121,9 @@ class SVM_PolynomialKernel:
         :param d: int
         :return: float - Valeur du noyau
         """
-        dot_product = sum(xi * yi for xi, yi in zip(x, y))
+        dot_product = sum(x[i] * y[i] for i in range(len(x)))
         return (kernel_scale * dot_product + c) ** d
+
 
 
 
@@ -165,7 +165,6 @@ Retourner 1 si decision_value > 0 et -1 si decision_value $\leq$ 0. $x_i$ fait r
 
 Vous devez implémenter la fonction de décision et prédire l'étiquette de classe pour un nouveau point $x_{\text{new}}$.
 """
-# J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
 
 class SVM_Classifier:
     def __init__(self):
@@ -183,9 +182,16 @@ class SVM_Classifier:
         :param kernel_function: callable - Fonction noyau à utiliser (par défaut, noyau polynomial)
         :return: int - Classe prédite (-1 ou 1)
         """
-        decision_value = sum(alpha * y * kernel_function(x, x_new) 
-                             for alpha, y, x in zip(lagrange_multipliers, support_labels, support_vectors)) + b
+        decision_value = 0
+        for i in range(len(support_vectors)):
+            alpha = lagrange_multipliers[i]
+            y = support_labels[i]
+            x = support_vectors[i]
+            decision_value += alpha * y * kernel_function(x, x_new)
+        
+        decision_value += b
         return 1 if decision_value > 0 else -1
+
 
 
 """## Question 2: Implementing a Gaussian Probability Density Function (PDF) (6 points)
