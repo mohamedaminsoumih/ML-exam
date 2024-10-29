@@ -430,7 +430,7 @@ Sortie :
 Explication : Le plus long sous-tableau est [4, 3, 3] avec une longueur de 3.
 """
 
-from collections import defaultdict
+from collections import Counter
 
 class LengthLongestSubarray:
     def __init__(self):
@@ -441,23 +441,15 @@ class LengthLongestSubarray:
         :type nums: List[int]
         :rtype: int
         """
-        counts = defaultdict(int)
-        left = 0
+        counts = Counter(nums)
         max_length = 0
 
-        for right in range(len(nums)):
-            counts[nums[right]] += 1
-            
-            # Vérifie que la différence maximale entre les éléments dans le sous-tableau est <= 1
-            while max(counts.keys()) - min(counts.keys()) > 1:
-                counts[nums[left]] -= 1
-                if counts[nums[left]] == 0:
-                    del counts[nums[left]]
-                left += 1
+        for num in counts:
+            # Somme des occurrences de num et de num + 1
+            max_length = max(max_length, counts[num] + counts.get(num + 1, 0))
 
-            max_length = max(max_length, right - left + 1)
-        
         return max_length
+
 
 
 
