@@ -448,7 +448,8 @@ class LengthLongestSubarray:
         for right in range(len(nums)):
             counts[nums[right]] += 1
             
-            while max(counts) - min(counts) > 1:
+            # Vérifie que la différence maximale entre les éléments dans le sous-tableau est <= 1
+            while max(counts.keys()) - min(counts.keys()) > 1:
                 counts[nums[left]] -= 1
                 if counts[nums[left]] == 0:
                     del counts[nums[left]]
@@ -457,6 +458,7 @@ class LengthLongestSubarray:
             max_length = max(max_length, right - left + 1)
         
         return max_length
+
 
 
 """## Question 5: Maximum sum of the values along the path  (3 points)
