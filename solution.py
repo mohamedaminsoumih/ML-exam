@@ -104,6 +104,7 @@ Vous devrez :
 
 ## Partie 1 : Implémenter le noyau polynomial (3 points)
 """
+ # J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
 
 class SVM_PolynomialKernel:
     def __init__(self):
@@ -123,6 +124,8 @@ class SVM_PolynomialKernel:
         """
         dot_product = sum(xi * yi for xi, yi in zip(x, y))
         return (kernel_scale * dot_product + c) ** d
+
+
 
         # END SOLUTION -- FIN SOLUTION
 
@@ -162,6 +165,7 @@ Retourner 1 si decision_value > 0 et -1 si decision_value $\leq$ 0. $x_i$ fait r
 
 Vous devez implémenter la fonction de décision et prédire l'étiquette de classe pour un nouveau point $x_{\text{new}}$.
 """
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
 
 class SVM_Classifier:
     def __init__(self):
@@ -230,6 +234,7 @@ Où :
 - $\Sigma$ est la matrice de covariance.
 - $k$ est la dimension des données.
 """
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
 
 
 class MultivariateGaussianPDF:
@@ -280,6 +285,8 @@ En utilisant le vecteur moyen donné ($\mu$) et la matrice de covariance ($\Sigm
 
 $$\log P(\mathbf{x} | \mu, \Sigma) = -\frac{1}{2} \left( (x - \mu)^T \Sigma^{-1} (x - \mu) \right) - \frac{1}{2} \log \left( (2\pi)^k |\Sigma| \right)$$
 """
+
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
 
 
 class Inference:
@@ -365,6 +372,8 @@ Explication : Il est impossible de réorganiser la chaîne de manière à ce que
 Indice : Pour résoudre cette question, vous n'avez besoin que d'un vecteur de fréquences des lettres (comptes) et de la longueur totale du mot. Essayez de jouer avec des exemples simples sur une feuille de papier pour découvrir la règle simple.
 """
 
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
+
 import collections
 
 class AdjacentCharactersProblem:
@@ -429,6 +438,7 @@ Sortie :
 
 Explication : Le plus long sous-tableau est [4, 3, 3] avec une longueur de 3.
 """
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question, avec quelques modifications que j'ai faites moi-même.
 
 from collections import Counter
 
@@ -538,6 +548,8 @@ Explication : Le chemin avec la somme maximale est 1 -> 3 -> 4 -> 3 -> 1, avec u
 Pour une grille avec $n$ lignes et $m$ colonnes, vous pouvez énumérer tous les chemins qui commencent à la position de la grille $(0,0)$ et se terminent à $(m,n)$. Vous pouvez énumérer les chemins avec des algorithmes comme la recherche en profondeur. Vous pouvez également remarquer les sous-problèmes récurrents et utiliser la programmation dynamique.
 """
 
+# J'ai utilisé ChatGPT pour m'aider à répondre à cette question.
+
 class MaximumSumPath:
     def __init__(self):
         pass
@@ -548,19 +560,19 @@ class MaximumSumPath:
         :rtype: int
         """
         m, n = len(grid), len(grid[0])
-        
+        dp = [[0] * n for _ in range(m)]
+        dp[0][0] = grid[0][0]
+
         # Initialisation de la première colonne et première ligne
         for i in range(1, m):
-            grid[i][0] += grid[i - 1][0]
+            dp[i][0] = dp[i - 1][0] + grid[i][0]
         for j in range(1, n):
-            grid[0][j] += grid[0][j - 1]
+            dp[0][j] = dp[0][j - 1] + grid[0][j]
 
-        # Remplissage de la grille avec la somme maximale
+        # Calcul de la somme maximale pour chaque cellule
         for i in range(1, m):
             for j in range(1, n):
-                grid[i][j] += max(grid[i - 1][j], grid[i][j - 1])
-        
-        # La valeur en bas à droite contient la somme maximale
-        return grid[m - 1][n - 1]
+                dp[i][j] = grid[i][j] + max(dp[i - 1][j], dp[i][j - 1])
 
+        return dp[m - 1][n - 1]
 
